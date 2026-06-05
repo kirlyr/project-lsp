@@ -1,0 +1,16 @@
+{% extends "scores/base.html" %}
+{% block content %}
+<section class="auth-panel">
+  <h1>Masuk SSIS</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label>Username
+      <input type="text" name="username" required>
+    </label>
+    <label>Password
+      <input type="password" name="password" required>
+    </label>
+    <button type="submit">Masuk</button>
+  </form>
+</section>
+{% endblock %}

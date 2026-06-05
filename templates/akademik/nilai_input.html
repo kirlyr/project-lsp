@@ -1,0 +1,11 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <h1>Input Nilai</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Simpan Nilai</button>
+  </form>
+</section>
+{% endblock %}

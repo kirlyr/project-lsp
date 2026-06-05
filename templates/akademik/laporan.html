@@ -1,0 +1,73 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel laporan-panel">
+  <div class="page-heading">
+    <h1>Laporan Nilai</h1>
+    <button class="print-button" type="button" onclick="window.print()">Cetak / PDF</button>
+  </div>
+
+  <form class="filter-form" method="get">
+    <label>Kelas
+      <select name="kelas">
+        <option value="">Semua Kelas</option>
+        {% for kelas in kelas_options %}
+          <option value="{{ kelas }}" {% if filters.kelas == kelas %}selected{% endif %}>{{ kelas }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Mata Pelajaran
+      <select name="mata_pelajaran">
+        <option value="">Semua Mata Pelajaran</option>
+        {% for mapel in mapel_options %}
+          <option value="{{ mapel.id }}" {% if filters.mata_pelajaran == mapel.id|stringformat:"s" %}selected{% endif %}>
+            {{ mapel.nama_mapel }}
+          </option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Status
+      <select name="status_kelulusan">
+        <option value="">Semua Status</option>
+        {% for status in status_options %}
+          <option value="{{ status }}" {% if filters.status_kelulusan == status %}selected{% endif %}>{{ status }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <button type="submit">Terapkan</button>
+    <a class="button-link" href="{% url 'laporan' %}">Reset</a>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Mata Pelajaran</th>
+        <th>Tugas</th>
+        <th>UTS</th>
+        <th>UAS</th>
+        <th>Nilai Akhir</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in laporan %}
+        <tr>
+          <td>{{ row.nis }}</td>
+          <td>{{ row.nama }}</td>
+          <td>{{ row.kelas }}</td>
+          <td>{{ row.nama_mapel }}</td>
+          <td>{{ row.nilai_tugas }}</td>
+          <td>{{ row.nilai_uts }}</td>
+          <td>{{ row.nilai_uas }}</td>
+          <td>{{ row.nilai_akhir }}</td>
+          <td>{{ row.status_kelulusan }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="9">Data laporan tidak ditemukan.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

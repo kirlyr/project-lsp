@@ -1,0 +1,41 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <div class="page-heading">
+    <h1>Rekap Nilai</h1>
+    <a class="button-link" href="{% url 'nilai_input' %}">Input Nilai</a>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Mata Pelajaran</th>
+        <th>Tugas</th>
+        <th>UTS</th>
+        <th>UAS</th>
+        <th>Akhir</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for nilai in nilai_list %}
+        <tr>
+          <td>{{ nilai.siswa.nis }}</td>
+          <td>{{ nilai.siswa.nama }}</td>
+          <td>{{ nilai.siswa.kelas }}</td>
+          <td>{{ nilai.mata_pelajaran.nama_mapel }}</td>
+          <td>{{ nilai.nilai_tugas }}</td>
+          <td>{{ nilai.nilai_uts }}</td>
+          <td>{{ nilai.nilai_uas }}</td>
+          <td>{{ nilai.nilai_akhir }}</td>
+          <td>{{ nilai.status_kelulusan }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="9">Belum ada nilai yang diinput.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

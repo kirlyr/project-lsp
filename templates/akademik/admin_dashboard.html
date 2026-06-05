@@ -1,0 +1,30 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <h1>Admin Dashboard</h1>
+  <p>Selamat datang, {{ user.username }}. Anda login sebagai admin.</p>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <strong>{{ jumlah_siswa }}</strong>
+      <span>Siswa</span>
+    </div>
+    <div class="stat-card">
+      <strong>{{ jumlah_guru }}</strong>
+      <span>Guru</span>
+    </div>
+    <div class="stat-card">
+      <strong>{{ jumlah_mapel }}</strong>
+      <span>Mata Pelajaran</span>
+    </div>
+    <div class="stat-card">
+      <strong>{{ jumlah_user }}</strong>
+      <span>User</span>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="button-link" href="{% url 'siswa_list' %}">Kelola Siswa</a>
+    <a class="button-link" href="{% url 'guru_list' %}">Kelola Guru</a>
+    <a class="button-link" href="{% url 'mapel_list' %}">Kelola Mapel</a>
+  </div>
+</section>
+{% endblock %}

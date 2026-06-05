@@ -1,0 +1,38 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <div class="page-heading">
+    <h1>Data Guru</h1>
+    <a class="button-link" href="{% url 'guru_tambah' %}">Tambah Guru</a>
+  </div>
+  <form class="search-form" method="get">
+    <input type="search" name="q" value="{{ query }}" placeholder="Cari nama atau ID guru">
+    <button type="submit">Cari</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>ID Guru</th>
+        <th>Nama Guru</th>
+        <th>Username</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for guru in guru_list %}
+        <tr>
+          <td>{{ guru.id_guru }}</td>
+          <td>{{ guru.nama_guru }}</td>
+          <td>{{ guru.user.username }}</td>
+          <td class="table-actions">
+            <a href="{% url 'guru_edit' guru.id %}">Edit</a>
+            <a href="{% url 'guru_hapus' guru.id %}">Hapus</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">Data guru tidak ditemukan.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

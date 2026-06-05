@@ -1,0 +1,12 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <h1>Hapus {{ jenis|title }}</h1>
+  <p>Anda yakin ingin menghapus {{ object }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Hapus</button>
+    <a class="button-link" href="{% if jenis == 'siswa' %}{% url 'siswa_list' %}{% else %}{% url 'guru_list' %}{% endif %}">Batal</a>
+  </form>
+</section>
+{% endblock %}

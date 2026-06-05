@@ -1,0 +1,12 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <h1>{{ title }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p class="hint">Akun login guru memakai username dan password awal sesuai ID guru.</p>
+    <button type="submit">Simpan</button>
+  </form>
+</section>
+{% endblock %}

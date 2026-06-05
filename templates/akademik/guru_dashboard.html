@@ -1,0 +1,21 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <h1>Guru Dashboard</h1>
+  <p>Selamat datang, {{ user.username }}. Anda login sebagai guru.</p>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <strong>{{ jumlah_mapel }}</strong>
+      <span>Mata Pelajaran</span>
+    </div>
+    <div class="stat-card">
+      <strong>{{ jumlah_nilai }}</strong>
+      <span>Nilai Diinput</span>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="button-link" href="{% url 'nilai_input' %}">Input Nilai</a>
+    <a class="button-link" href="{% url 'nilai_rekap' %}">Lihat Rekap</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <div class="page-heading">
+    <h1>Data Mata Pelajaran</h1>
+    <a class="button-link" href="{% url 'mapel_tambah' %}">Tambah Mapel</a>
+  </div>
+  <form class="search-form" method="get">
+    <input type="search" name="q" value="{{ query }}" placeholder="Cari kode, nama mapel, atau guru">
+    <button type="submit">Cari</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Kode</th>
+        <th>Mata Pelajaran</th>
+        <th>Guru Pengampu</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mapel in mapel_list %}
+        <tr>
+          <td>{{ mapel.kode_mapel }}</td>
+          <td>{{ mapel.nama_mapel }}</td>
+          <td>{{ mapel.guru.nama_guru }}</td>
+          <td class="table-actions">
+            <a href="{% url 'mapel_edit' mapel.id %}">Edit</a>
+            <a href="{% url 'mapel_hapus' mapel.id %}">Hapus</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">Data mata pelajaran tidak ditemukan.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

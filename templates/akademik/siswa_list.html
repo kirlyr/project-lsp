@@ -1,0 +1,40 @@
+{% extends "akademik/base.html" %}
+{% block content %}
+<section class="panel">
+  <div class="page-heading">
+    <h1>Data Siswa</h1>
+    <a class="button-link" href="{% url 'siswa_tambah' %}">Tambah Siswa</a>
+  </div>
+  <form class="search-form" method="get">
+    <input type="search" name="q" value="{{ query }}" placeholder="Cari nama atau kelas">
+    <button type="submit">Cari</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Username</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for siswa in siswa_list %}
+        <tr>
+          <td>{{ siswa.nis }}</td>
+          <td>{{ siswa.nama }}</td>
+          <td>{{ siswa.kelas }}</td>
+          <td>{{ siswa.user.username }}</td>
+          <td class="table-actions">
+            <a href="{% url 'siswa_edit' siswa.id %}">Edit</a>
+            <a href="{% url 'siswa_hapus' siswa.id %}">Hapus</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">Data siswa tidak ditemukan.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

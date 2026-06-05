@@ -1,0 +1,34 @@
+{% extends "scores/base.html" %}
+{% block content %}
+<section class="panel">
+  <h1>Laporan Nilai</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Mapel</th>
+        <th>Guru</th>
+        <th>Nilai Akhir</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in laporan %}
+        <tr>
+          <td>{{ row.nis }}</td>
+          <td>{{ row.nama_siswa }}</td>
+          <td>{{ row.kelas }}</td>
+          <td>{{ row.mata_pelajaran }}</td>
+          <td>{{ row.guru }}</td>
+          <td>{{ row.nilai_akhir }}</td>
+          <td>{{ row.status_kelulusan }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="7">Belum ada laporan.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

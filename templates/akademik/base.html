@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SSIS</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{% url 'redirect_dashboard' %}">SSIS</a>
+    {% if user.is_authenticated %}
+      <nav>
+        {% if user.role == "admin" %}
+          <a href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+          <a href="{% url 'siswa_list' %}">Siswa</a>
+          <a href="{% url 'guru_list' %}">Guru</a>
+          <a href="{% url 'mapel_list' %}">Mapel</a>
+          <a href="{% url 'laporan' %}">Laporan</a>
+        {% elif user.role == "guru" %}
+          <a href="{% url 'guru_dashboard' %}">Guru Dashboard</a>
+          <a href="{% url 'nilai_input' %}">Input Nilai</a>
+          <a href="{% url 'nilai_rekap' %}">Rekap Nilai</a>
+          <a href="{% url 'laporan' %}">Laporan</a>
+        {% elif user.role == "siswa" %}
+          <a href="{% url 'siswa_dashboard' %}">Siswa Dashboard</a>
+          <a href="{% url 'nilai_saya' %}">Nilai Saya</a>
+        {% endif %}
+        <a href="{% url 'logout' %}">Logout</a>
+      </nav>
+    {% endif %}
+  </header>
+  <main class="page">
+    {% for message in messages %}
+      <div class="message">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
