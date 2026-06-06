@@ -26,6 +26,7 @@ def hitung_nilai_akhir(tugas, uts, uas):
     return float(hasil.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))
 
 
+
 def tentukan_status_kelulusan(nilai_akhir):
     """Menentukan status Lulus atau Tidak Lulus dari nilai akhir."""
     validasi_nilai(nilai_akhir)
